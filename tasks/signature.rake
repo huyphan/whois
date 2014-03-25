@@ -3,41 +3,57 @@ require 'fileutils'
 namespace :signature do
 
   _ROOT_DIR = File.expand_path("../../", __FILE__)
-  _TARGET_DIR    = File.join(_ROOT_DIR, %w( lib whois record parser ))
-  _SOURCE_DIR    = File.join(_ROOT_DIR, %w( spec fixtures responses ))
+  _TARGET_DIR    = File.join(_ROOT_DIR, %w( lib whois record ))
+  _SOURCE_DIR    = File.join(_ROOT_DIR, %w( spec signatures responses ))
   _SOURCE_PARTS  = _SOURCE_DIR.split("/")
 
   task :generate => :generate_signatures
 
   task :generate_signatures do
-  
-    signature_hash = ""
     target_path = File.join(_TARGET_DIR, "signature.rb")
+
+
+    signatures_by_parser = ""
+    parsers_by_signature = ""
+    signatures = {}
     
     # Loop through the txt files
-    Dir["#{SOURCE_DIR}/**/*.expected"].each do |source_path|
-      parts = (source_path.split("/") - SOURCE_PARTS)
-      khost = parts.first
-      kfile = parts.last.gsub(".expected","")
-
+    Dir.glob("#{_SOURCE_DIR}/**/*.txt").each do |source_path|
+      
+      parts = (source_path.split("/") - _SOURCE_PARTS)
+      khost = parts.shift
+      kfile = parts.join("_")
       txt_path = source_path.gsub(".expected", ".txt")
-      lines = File.open(txt_path, "r:UTF-8")
+      lines = File.open(source_path, "r:UTF-8")
+      puts "Reading... " + source_path
+
       keywords = Set.new()
       lines.each do |line|
-        # Extract the part before colon character
-        if match = line.match(/^([^:]+)\s*:/)
-          keywords.add(match[1].strip())
+        line = line.strip()
+
+        # I'm using Aho Corasick to perform multi-pattern search
+        # within a whois data. The lines below replace the character 
+        # '^' with '\n' to indicate that we want the keyword to be
+        # at the beginning of sentence
+
+        if (line.start_with?("^"))
+          line = line.sub("^","\n")
+        end
+
+        if !line.empty?
+          keywords.add(line)
+          signatures[line] = (signatures[line] || Set.new) + ["#{khost}__#{kfile}"]
         end
       end
 
-      # For better quality, we only consider those with more than 5 keywords.
-      # This number is very subjective to the author, one might want to change
-      # it to improve the guess.
-      #
-      if keywords.count() > 5
-        signature_hash += "        \"#{khost}__#{kfile}\" => #{keywords.to_a.sort().to_s},\n"
+      if keywords.count > 0
+        signatures_by_parser += "            \"#{khost}__#{kfile}\" => #{keywords.to_a.sort().to_s},\n"
       end
     end
+
+    signatures.each { |k,v| 
+      parsers_by_signature += "            #{k.inspect} => #{v.to_a.sort().to_s},\n"
+    }
 
     signature = <<-RUBY
 # encoding: utf-8
@@ -46,22 +62,45 @@ namespace :signature do
 # If you want regenerate the content of this file, please
 # update the txt files under 
 #
-#  /spec/fixtures/responses
+#  /spec/signature/responses
 # 
 # then run following rake task
 #
 #   $ rake signature:generate
 #
-class Signature
-  @@signatures = {
-#{signature_hash} 
-  }
 
-  def self.signatures
-    @@signatures
+require 'aho_corasick'
+
+module Whois
+  class Record
+    class Signature
+      @@signatures_by_parser = {
+#{signatures_by_parser} 
+      }
+
+      @@parsers_by_signature = {
+#{parsers_by_signature} 
+      }
+
+      @@matcher = AhoCorasick.new(*@@parsers_by_signature.keys)
+
+      def self.signatures_by_parser
+        @@signatures_by_parser
+      end
+
+      def self.parsers_by_signature
+        @@parsers_by_signature
+      end  
+
+      def self.matcher
+        @@matcher
+      end
+
+    end
   end
 end
     RUBY
+
     File.write(target_path, signature)
   end
 end

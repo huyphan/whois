@@ -43,7 +43,8 @@ module Whois
           when list.include?("ok")
             :registered
           else
-            Whois.bug!(ParserError, "Unknown status `#{list.join(", ")}'.")
+            # Whois.bug!(ParserError, "Unknown status `#{list.join(", ")}'.")
+            nil 
           end
         end
 

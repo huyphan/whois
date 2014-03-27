@@ -95,6 +95,9 @@ module Whois
       #   # => Whois::Record::Parser::WhoisExampleCom
       #
       def self.parser_klass(host)
+        if host.nil? or host.empty? 
+          raise LoadError.new("host is nil or empty")
+        end
         name = host_to_parser(host)
         Parser.const_defined?(name) || autoload(host)
         Parser.const_get(name)

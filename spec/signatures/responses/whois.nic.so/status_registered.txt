@@ -1,0 +1,11 @@
+^Status
+^Name Server
+^Last Updated On
+^Creation Date
+^Tech Contact ID
+^Sponsoring Registrar
+^Admin Contact ID
+^Domain Name
+^Billing Contact ID
+^Registrant ID
+^Expiration Date

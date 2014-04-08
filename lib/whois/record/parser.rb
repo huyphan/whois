@@ -6,7 +6,7 @@
 # Copyright (c) 2009-2014 Simone Carletti <weppos@weppos.net>
 #++
 
-require "whois/record/parser/signature"
+require "whois/record/signature"
 
 module Whois
   class Record
@@ -72,6 +72,7 @@ module Whois
         guess_klass(part.body).new(part)
       end
 
+
       # Detects the proper parser class according to given <tt>host</tt>
       # and returns the class constant.
       #
@@ -94,6 +95,9 @@ module Whois
       #   # => Whois::Record::Parser::WhoisExampleCom
       #
       def self.parser_klass(host)
+        if host.nil? or host.empty? 
+          raise LoadError.new("host is nil or empty")
+        end
         name = host_to_parser(host)
         Parser.const_defined?(name) || autoload(host)
         Parser.const_get(name)
@@ -118,31 +122,18 @@ module Whois
       #
       def self.guess_klass(body)
 
-        # Search for lines that have the colon character and extract
-        # the part before colon as keyword.
-        keywords = body ? body.scan(/^([^:]+)\s*:/).map! {|kw| kw[0].strip()}.to_a : []
-
-        # Sort the array to optimize the arrays comparison later on
-        keywords = keywords.uniq().sort()
-
-        # We loop through the signatures, compare them with our extracted
-        # keywords and take the one that has the most matches.
-        max = 0
-        klass = nil
-        Signature.signatures.each { |key, signature| 
-          intersect_size = (signature & keywords).count
-          if intersect_size > max
-            max = intersect_size
-            klass = key
-          end
+        matcher = Signature.matcher
+        count = {}
+        matcher.match(body).uniq.each {|word|
+          Signature.parsers_by_signature[word].each { |key|
+            count[key] = (count[key] || 0) + 1
+          }
         }
+        
+        klass, max = count.max_by{|k,v| v }
 
-        # Score is calculated by number of matching keywords over total
-        # keywords.
-        score = Float(max)/keywords.count()
-
-        # We only accept this if score is above 0.5
-        if score >= 0.5
+        # Having more than 1 match is good enough, I hope
+        if max and max > 1
           host = klass.split("__")[0]
           # Unlike parser_for function, we don't expect LoadError here because
           # the host is taken from our own list

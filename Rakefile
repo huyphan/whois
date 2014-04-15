@@ -1,12 +1,9 @@
 require 'rubygems'
 
 $:.unshift(File.dirname(__FILE__) + '/lib')
+
+require 'whois/version'
 require 'whois'
-
-
-# Common package properties
-PKG_NAME    = Whois::GEM
-PKG_VERSION = Whois::VERSION
 
 
 # Run test by default.

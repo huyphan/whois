@@ -60,7 +60,8 @@ describe Whois::Record::Parser::WhoisRrpproxyNet, "status_registered.expected" d
   end
   describe "#expires_on" do
     it do
-      expect { subject.expires_on }.to raise_error(Whois::AttributeNotSupported)
+      expect(subject.expires_on).to be_a(Time)
+      expect(subject.expires_on).to eq(Time.parse("2015-02-03 19:44:56 UTC"))
     end
   end
   describe "#registrar" do

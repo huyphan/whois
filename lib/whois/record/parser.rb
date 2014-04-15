@@ -121,7 +121,6 @@ module Whois
       #         The {Class} is expected to be a child of {Whois::Record::Parser::Base}.
       #
       def self.guess_klass(body)
-
         matcher = Signature.matcher
         count = {}
         matcher.match(body).uniq.each {|word|
@@ -142,6 +141,9 @@ module Whois
           Parser.const_defined?("Blank") || autoload("blank")
           Parser.const_get("Blank")
         end
+      rescue
+          Parser.const_defined?("Blank") || autoload("blank")
+          Parser.const_get("Blank")
       end
 
       # Converts <tt>host</tt> to the corresponding parser class name.

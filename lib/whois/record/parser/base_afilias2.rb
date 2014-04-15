@@ -72,9 +72,7 @@ module Whois
 
         property_supported :registrar do
           node("Sponsoring Registrar") do |value|
-            id, name = decompose_registrar(value) ||
-                nil, value
-
+            id, name = decompose_registrar(value) || [nil,value]
             Record::Registrar.new(
                 id:           id,
                 name:         name

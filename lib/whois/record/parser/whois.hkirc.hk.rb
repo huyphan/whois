@@ -49,7 +49,10 @@ module Whois
         end
 
         property_supported :created_on do
-          Time.parse(node("Domain Name Commencement Date"))
+          if content_for_scanner = node("Domain Name Commencement Date")
+            time = content_for_scanner.strip
+            Time.parse(time) unless time == 'null'
+          end          
         end
 
         property_not_supported :updated_on

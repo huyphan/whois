@@ -1,18 +1,15 @@
 require 'rubygems'
 
 $:.unshift(File.dirname(__FILE__) + '/lib')
-
-require 'whois/version'
 require 'whois'
-
 
 # Run test by default.
 task :default => :spec
 task :test => :spec
 
 spec = Gem::Specification.new do |s|
-  s.name              = PKG_NAME
-  s.version           = PKG_VERSION
+  s.name              = "whois"
+  s.version           = Whois::VERSION
   s.summary           = "An intelligent pure Ruby WHOIS client and parser."
   s.description       = "Whois is an intelligent WHOIS client and parser written in pure Ruby. It can query registry data for IPv4, IPv6 and top level domains, parse and convert responses into easy-to-use Ruby objects."
 
@@ -29,6 +26,8 @@ spec = Gem::Specification.new do |s|
                         Dir.glob("{bin,data,lib}/**/*")
   s.executables       = %w( ruby-whois )
   s.require_paths     = %w( lib )
+
+  s.add_dependency "activesupport", ">= 3"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"

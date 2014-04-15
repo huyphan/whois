@@ -37,7 +37,7 @@ As I don't want to put this patch to [RubyGems](https://rubygems.org/), the only
 
 ## How to use
 
-My patch is totally compatible with the main `Whois` module, that means your code should work just fine if you install this patch. Please refer to the original [README](https://github.com/weppos/whois/blob/master/README.md) for a quick tutorial on how to use it, or read the full (documentation)[http://ruby-whois.org/documentation/].
+My patch is totally compatible with the main `Whois` module, that means your code should work just fine if you install this patch. Please refer to the original [README](https://github.com/weppos/whois/blob/master/README.md) for a quick tutorial on how to use it, or read the full [documentation](http://ruby-whois.org/documentation/).
 
 ## Credits
 

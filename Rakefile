@@ -10,13 +10,13 @@ task :test => :spec
 spec = Gem::Specification.new do |s|
   s.name              = "whois"
   s.version           = Whois::VERSION
-  s.summary           = "An intelligent pure Ruby WHOIS client and parser."
+  s.summary           = "A patched version of Ruby WHOIS client and parser to add heuristic parsing and more graceful when handling errors"
   s.description       = "Whois is an intelligent WHOIS client and parser written in pure Ruby. It can query registry data for IPv4, IPv6 and top level domains, parse and convert responses into easy-to-use Ruby objects."
 
   s.required_ruby_version = ">= 1.9.2"
 
-  s.authors           = ["Simone Carletti"]
-  s.email             = ["weppos@weppos.net"]
+  s.authors           = ["Simone Carletti","Huy Phan"]
+  s.email             = ["weppos@weppos.net", "dachuy@gmail.com"]
   s.homepage          = "http://www.ruby-whois.org/"
   s.license           = "MIT"
   s.rubyforge_project = "whois"
@@ -39,15 +39,8 @@ spec = Gem::Specification.new do |s|
 
   Thank you for installing the whois gem!
 
-  If you like this gem, please support the project.
-  http://pledgie.com/campaigns/11383
-
-  Does your project or organization use this gem? Add it to the apps wiki.
-  https://github.com/weppos/whois/wiki/apps
-
-  Are you looking for a quick and convenient way to perform WHOIS queries?
-  Check out RoboWhois WHOIS API.
-  https://www.robowhois.com/
+  This is a patched version of original Ruby Whois module at https://github.com/weppos/whois
+  Contributions are welcome in both repositories. 
 
 ********************************************************************************
 EOS

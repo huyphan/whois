@@ -14,7 +14,7 @@ module Whois
     MAJOR = 3
     MINOR = 5
     PATCH = 2
-    BUILD = nil
+    BUILD = "20140422"
 
     STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join(".")
   end

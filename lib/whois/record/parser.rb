@@ -358,12 +358,12 @@ module Whois
       def delegate_property_to_parsers(method, *args, &block)
         if parsers.empty?
           raise ParserError, "Unable to select a parser because the Record is empty"
-        elsif (parser = select_parser { |p| p.class.property_state?(method, PROPERTY_STATE_SUPPORTED) })
-          parser.send(method, *args, &block)
-        elsif (parser = select_parser { |p| p.class.property_state?(method, PROPERTY_STATE_NOT_SUPPORTED) })
-          parser.send(method, *args, &block)
         else
-          raise AttributeNotImplemented, "Unable to find a parser for property `#{method}'"
+          parsers.each do |parser|
+            prop = parser.send(method, *args, &block) if parser.class.property_state?(method, PROPERTY_STATE_SUPPORTED) || parser.class.property_state?(method, PROPERTY_STATE_NOT_SUPPORTED)
+            return prop if prop
+          end
+          nil
         end
       end
 

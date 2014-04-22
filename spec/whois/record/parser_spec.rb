@@ -171,13 +171,6 @@ describe Whois::Record::Parser do
       }.to raise_error(Whois::AttributeNotSupported)
     end
 
-    it "raises when parsers are undefined" do
-      expect {
-        r = Whois::Record.new(nil, [Whois::Record::Part.new(body: "", host: "parser.undefined.test"), Whois::Record::Part.new(body: "", host: "parser.undefined.test")])
-        described_class.new(r).created_on
-      }.to raise_error(Whois::AttributeNotImplemented)
-    end
-
     it "raises when zero parts" do
       expect {
         r = Whois::Record.new(nil, [])

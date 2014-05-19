@@ -1269,7 +1269,7 @@
     "host": "whois.donuts.co"
   },
   ".club": {
-    "adapter": "none"
+    "host": "whois.nic.club"
   },
   ".codes": {
     "host": "whois.donuts.co"

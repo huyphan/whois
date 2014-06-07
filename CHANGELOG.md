@@ -1,5 +1,35 @@
 # Changelog
 
+#### Master
+
+- CHANGED: Updated whois.iis.se and whois.iis.nu to the new response format (GH-328).
+
+
+#### Release 3.5.4
+
+- SERVER: Created .QUEBEC, .COLLEGE, .DESI, .FEEDBACK, .ROCKS, .XN, .ASSOCIATES, .CAPITAL, .CAREER, .ENGINEERING, .EUS, .GAL, .GRIPE, .LEASE, .MEDIA, .PICTURES, .REISEN, .SERVICES, .TOWN, .TOYS, .UNIVERSITY, .XN, .FOO, .FROGANS, .PARIS, .SOY, .BLACKFRIDAY, .CLINIC, .FITNESS, .SCHULE, .CARE, .CASH, .DENTAL, .DISCOUNT, .EXCHANGE, .FAIL, .FINANCIAL, .FUND, .FURNITURE, .GRATIS, .INVESTMENTS, .LIMITED, .SURGERY, .TAX, .WTF, .MOSCOW, .XN, .CREDITCARD, .FINANCE, .INSURE, .WTC, .AIRFORCE, .BAYERN, .GLOBO, .ACCOUNTANTS, .CLAIMS, .CREDIT, .DIGITAL
+
+- SERVER: Updated .CEO, .CLUB, .VG
+
+- FIXED: whois.enom.com and whois.yoursrs.com parsers crash when trying to access an empty update date (GH-327). [Thanks @alexaitken]
+
+- NEW: whois.markmonitor.com parser now recognizes throttled responses.
+
+- CHANGED: Updated ccwhois.ksregistry.net to the new response format.
+
+- CHANGED: Updated whois.gg to the new response format.
+
+- CHANGED: Updated whois.arnesi.si to the new response format.
+
+- CHANGED: Updated whois.dreamhost.com to the new response format (GH-326). [Thanks @shingonoide]
+
+- CHANGED: whois.cctld.uz now supports updated_on (GH-315). [Thanks @huyphan]
+
+
+#### Release 3.5.3
+
+- CHANGED: Updated whois.pir.org to the new response format.
+
 
 #### Release 3.5.2
 

@@ -1,8 +1,25 @@
 # Changelog
 
-#### Master
+#### master
+
+- SERVER: Created .AUDIO, .BEER, .CHURCH, .GUIDE, .HIPHOP, .JUEGOS, .LIFE, .LOANS, .LUXE, .BEST, .AUTOS, .HOMES, .MOTORCYCLES, .REISE, .RIO, .VERSICHERUNG, .YACHTS, .XN, .DEGREE, .SPACE, .WEBSITE, .ATTORNEY, .DENTIST, .HIV, .HOST, .LAWYER, .MARKET, .MORTGAGE, .PRESS, .SOFTWARE, .VET, .BIO, .ARMY, .ENGINEER, .GIVES, .HAMBURG, .NAVY, .NHK, .REHAB, .REPUBLICAN, .TIROL, .GLOBAL, .ORGANIC, .SCOT, .BZH, .XN, .BRUSSELS, .SURF, .VLAANDEREN, .CAPETOWN, .DURBAN, .GREEN, .JOBURG, .LOTTO, .OVH, .PHYSIO, .BMW, .CEO, .MINI, .ACTIVE
+
+- CHANGED: Updated whois.nic.cx to the new response format.
+
+
+#### Release 3.5.5
+
+- NEW: Added registrar and contact support for whois.dns.lu (GH-329). [Thanks @huyphan]
 
 - CHANGED: Updated whois.iis.se and whois.iis.nu to the new response format (GH-328).
+
+- FIXED: whois.fi parser crashes when the domain is reserved (GH-339). [Thanks @case]
+
+- FIXED: whois.whois.nic.asia parser crashes when the status is reserved (GH-340). [Thanks @case]
+
+- FIXED: whois.netcom.cm parser crashes when the status is suspended (GH-333). [Thanks @case]
+
+- FIXED: whois.nic.gd parser crashes when the domain is reserved (GH-335). [Thanks @case]
 
 
 #### Release 3.5.4

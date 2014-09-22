@@ -1,8 +1,8 @@
 #domain
-  %s == "google.cx"
+  %s == "imdb.cm"
 
 #domain_id
-  %s == "447518-CoCCA"
+  %s %ERROR{AttributeNotSupported}
 
 
 #status
@@ -17,33 +17,29 @@
 
 #created_on
   %s %CLASS{time}
-  %s %TIME{2010-07-29 18:15:42 UTC}
+  %s %TIME{2009-08-28 01:00 WAT}
 
 #updated_on
   %s %CLASS{time}
-  %s %TIME{2014-06-28 09:18:02 UTC}
+  %s %TIME{2014-01-24 09:17 WAT}
 
 #expires_on
   %s %CLASS{time}
-  %s %TIME{2015-07-29 18:15:42 UTC}
+  %s %TIME{2011-08-28 01:00 WAT}
 
 
 #registrar
   %s %CLASS{registrar}
   %s.id           == nil
-  %s.name         == "MarkMonitor"
+  %s.name         == "Registrar ANTIC"
   %s.organization == nil
   %s.url          == nil
 
 
 #nameservers
   %s %CLASS{array}
-  %s %SIZE{4}
+  %s %SIZE{2}
   %s[0] %CLASS{nameserver}
-  %s[0].name == "ns1.google.com"
+  %s[0].name == "ns1.refinedhosting.net"
   %s[1] %CLASS{nameserver}
-  %s[1].name == "ns3.google.com"
-  %s[2] %CLASS{nameserver}
-  %s[2].name == "ns4.google.com"
-  %s[3] %CLASS{nameserver}
-  %s[3].name == "ns2.google.com"
+  %s[1].name == "ns2.refinedhosting.net"

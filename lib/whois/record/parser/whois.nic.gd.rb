@@ -20,6 +20,12 @@ module Whois
       #   The Example parser for the list of all available methods.
       #
       class WhoisNicGd < BaseShared3
+
+        # NEWPROPERTY
+        def reserved?
+          !!content_for_scanner.match(/RESTRICTED/)
+        end
+
       end
 
     end

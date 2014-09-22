@@ -34,9 +34,8 @@ module Whois
           end
         end
 
-        # .XXX
         tokenizer :scan_reserved do
-          if @input.scan(/^Reserved by ICM Registry\n/)
+          if settings[:pattern_reserved] && @input.scan(settings[:pattern_reserved])
             @ast["status:reserved"] = true
           end
         end

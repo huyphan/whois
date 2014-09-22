@@ -10,12 +10,12 @@
 
 
 #status
-  %s == []
+  %s == :reserved
 
-#available?
+#reserved?
   %s == true
 
-#registered?
+#available?
   %s == false
 
 
@@ -51,4 +51,4 @@
 
 
 #reserved?
-  %s == false
+  %s == true

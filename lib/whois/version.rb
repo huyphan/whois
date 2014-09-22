@@ -13,8 +13,8 @@ module Whois
   module Version
     MAJOR = 3
     MINOR = 5
-    PATCH = 4
-    BUILD = "20140607"
+    PATCH = 5
+    BUILD = "20140922"
 
     STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join(".")
   end

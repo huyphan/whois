@@ -1,10 +1,14 @@
 # Changelog
 
-#### master
+#### Release 3.5.6
 
 - SERVER: Created .AUDIO, .BEER, .CHURCH, .GUIDE, .HIPHOP, .JUEGOS, .LIFE, .LOANS, .LUXE, .BEST, .AUTOS, .HOMES, .MOTORCYCLES, .REISE, .RIO, .VERSICHERUNG, .YACHTS, .XN, .DEGREE, .SPACE, .WEBSITE, .ATTORNEY, .DENTIST, .HIV, .HOST, .LAWYER, .MARKET, .MORTGAGE, .PRESS, .SOFTWARE, .VET, .BIO, .ARMY, .ENGINEER, .GIVES, .HAMBURG, .NAVY, .NHK, .REHAB, .REPUBLICAN, .TIROL, .GLOBAL, .ORGANIC, .SCOT, .BZH, .XN, .BRUSSELS, .SURF, .VLAANDEREN, .CAPETOWN, .DURBAN, .GREEN, .JOBURG, .LOTTO, .OVH, .PHYSIO, .BMW, .CEO, .MINI, .ACTIVE
 
 - CHANGED: Updated whois.nic.cx to the new response format.
+
+- FIXED: ruby-whois --version crashes (GH-356). [Thanks @micat]
+
+- FIXED: whois.register.com parser crashes when the update date is empty (GH-353). [Thanks @alexaitken]
 
 
 #### Release 3.5.5

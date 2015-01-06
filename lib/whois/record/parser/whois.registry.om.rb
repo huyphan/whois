@@ -20,9 +20,21 @@ module Whois
       #   The Example parser for the list of all available methods.
       #
       class WhoisRegistryOm < BaseShared1
+
+        self.scanner = Scanners::BaseShared1, {
+            pattern_reserved: /^Restricted\n/
+        }
+
+
         property_supported :updated_on do
           node("Last Modified") { |value| Time.parse(value) }
         end
+
+
+        def reserved?
+          !!node('status:reserved')
+        end
+
       end
 
     end
